@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <input type="button" value="entrar no menu" id="btn-menu" onclick="menu()">
+
+    <section id="menu"> 
+            <p>Digite o nome da sua div
+                <input type="text" name="nomediv" id="nomediv">
+            </p>
+            
+            
+            <div><p>Escolha a cor</p>
+                <input type="radio" name="color" id="vermelho" checked>
+                <label for="vermelho">Vermelho</label>
+
+                <input type="radio" name="color" id="azul">
+                <label for="azul">Azul</label>
+
+                <input type="radio" name="color" id="verde">
+                <label for="verde">Verde</label>
+                
+            </div>
+            <input type="button" value="criar" onclick="criar()">
+    </section>
+
+    <section id="divs-criadas">
+
+
+    </section>
+
+    <script>
+
+        function menu(){
+
+            var btnMenu = document.querySelector('#btn-menu')
+            btnMenu.style.display = 'none'
+            var menu = document.querySelector('#menu')
+            menu.style.display = 'block'
+
+
+        }
+
+        function criar(){
+            var nomeDiv = document.querySelector('#nomediv').value
+                
+
+            if(nomeDiv === '' ){
+                alert('[ERRO] peencha corretamente')
+            }
+            else{
+
+                var cor = document.getElementsByName('color')
+
+                var novaDiv = document.createElement('div')
+                novaDiv.setAttribute('class', 'caixa')
+
+                if(cor[0].checked){
+                    novaDiv.style.backgroundColor = 'red'
+                }
+                else if(cor[1].checked){
+                    novaDiv.style.backgroundColor = 'blue'
+                }
+                else if(cor[2].checked){
+                    novaDiv.style.backgroundColor = 'green'
+                }
+
+                var menu = document.querySelector('#menu')
+
+
+                var h1NomeDiv = document.createElement('h1')
+                
+                h1NomeDiv.innerHTML = nomeDiv
+                
+
+
+                var local = document.querySelector('#divs-criadas')
+
+                novaDiv.appendChild(h1NomeDiv)
+                local.appendChild(novaDiv)
+
+                var excluirDiv = document.createElement('input');
+                    excluirDiv.setAttribute('type', 'button');
+                    excluirDiv.setAttribute('value', 'X');
+                    excluirDiv.setAttribute('class', 'excluir-essa-div'); 
+
+                    excluirDiv.addEventListener('click', function() {
+
+                        var divExcluir = excluirDiv.parentNode
+                        local.removeChild(divExcluir)
+                    })
+
+                    novaDiv.appendChild(excluirDiv);
+
+            }
+
+            
+            
+
+        }
+
+    </script>
+</body>

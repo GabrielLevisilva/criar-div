@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="bloco">
+        <header>
+            <h1>To do</h1>
+        </header>
+        <p>Adicione sua tarefa <br>
+            <input type="text" name="tarTitulo" id="tarTitulo" placeholder="O que você vai fazer?">
+            <input type="button" value="+" class="button" onclick="criarTarefa()">
+        </p>
+        <div class="flex">
+            <p>Pesquisar: <br>
+                <input type="search" name="buscar" id="buscar" placeholder="Buscar...">
+                <input type="reset" value="apagar">
+            </p>
+            <p>Filtrar: <br>
+                <select name="filtro" id="filtro">
+                    <option value="">Todos</option>
+                    <option value="">Feitos</option>
+                    <option value="">A fazer</option>
+                </select>
+            </p>
+        </div>
+    </section>
+        <section id="local-tarefas">
+
+            <!-- <div class="container"> 
+                <div class="tarefa">
+                    <h3>opa</h3>
+                </div>
+                <div class="btns">
+
+                <input type='button' value='X' class='excluirTar' onclick='excluirTarefa()'> 
+                <input type='button' value='C' name='check' id='check'>
+                <input type='button' value='E' onclick='editarTarefa()''>
+
+                </div>
+            </div> -->
+
+        </section>
+
+
+    <script>
+              function marcarTarefaFeita(event) {
+        var checkbox = event.target;
+        var container = checkbox.closest('.container');
+
+        if (checkbox.checked) {
+            container.style.backgroundColor = '#415064';
+            container.style.color = 'white';
+
+        } else {
+            container.style.backgroundColor = 'white';
+            container.style.color = 'rgba(0, 0, 0, 0.555)';
+        }
+             }
+
+            function excluirTarefa(event) {
+            var btn = event.target;  // O botão que disparou o evento
+            var container = btn.closest('.container');  // Encontra o contêiner pai da tarefa
+            container.remove();  // Remove o contêiner com a tarefa
+        }
+
+        function criarTarefa(){
+            var tarefaTituloValor = document.querySelector('#tarTitulo').value
+            if(tarefaTituloValor === ''){
+                alert('[ERRO] adicione um titulo a sua tarefa')
+            }
+            else{
+                
+            
+                var container = document.createElement('div')
+                container.setAttribute('class', 'container')
+
+
+
+                var tarefa = document.createElement('div')
+                tarefa.setAttribute('class', 'tarefa')
+
+                var btns = document.createElement('div')
+                btns.setAttribute('class', 'btns')
+                btns.innerHTML = "<input type='button' value='X' class='excluirTar' onclick='excluirTarefa()'> <input type='checkbox' name='check' class='check' onclick='check()'> <input type='button' value='E' onclick='editarTarefa()''>"
+                
+                
+                var tituloTarefa = document.createElement('h3')
+                tituloTarefa.innerHTML = tarefaTituloValor
+                container.appendChild(tarefa)
+                container.appendChild(btns)
+
+                var localTarefas = document.querySelector('#local-tarefas')
+                
+                tarefa.appendChild(tituloTarefa)
+                localTarefas.appendChild(container)
+
+                
+
+            }
+            var excluirDiv = container.querySelector('.excluirTar');
+            excluirDiv.addEventListener('click', excluirTarefa);
+            
+            var check = container.querySelector('.check');
+            check.addEventListener('click', marcarTarefaFeita);
+            
+        }
+    </script>
+</body>
+</html>
