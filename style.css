@@ -1,8 +1,3 @@
-/* TO DO
-
-RESOLVER PROBLEMA DE QUEBRA DE LINHA NA TAREFA
- */
-
 *{
     margin: 0px;
     padding: 0px;
@@ -17,12 +12,12 @@ header{
 body{
     background-color: #576399;
     height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    
 
 }
+
 section#bloco{
+    
     margin: auto;
     max-width: 500px ;
     background-color: white;
